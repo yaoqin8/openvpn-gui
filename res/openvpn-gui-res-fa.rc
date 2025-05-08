@@ -170,7 +170,7 @@ BEGIN
     GROUPBOX "شروع به کار", 202, 6, 47, 235, 30
     AUTOCHECKBOX "شروع به کار - وقتی کاربر وارد شد", ID_CHK_STARTUP, 17, 59, 200, 12
 
-    GROUPBOX "تنظیمات", ID_GROUPBOX3, 6, 82, 235, 165
+    GROUPBOX "تنظیمات", ID_GROUPBOX3, 6, 82, 235, 180
     AUTOCHECKBOX "چسباندن به گزارشات", ID_CHK_LOG_APPEND, 17, 95, 60, 10
     AUTOCHECKBOX "نمایش پنجره اسکریپت", ID_CHK_SHOW_SCRIPT_WIN, 17, 110, 200, 10
     AUTOCHECKBOX "بی صدا(اعلان) متصل شدن", ID_CHK_SILENT, 17, 125, 200, 10
@@ -185,6 +185,7 @@ BEGIN
     AUTORADIOBUTTON "&Disable", ID_RB_BALLOON5, 181, 200, 40, 10
     AUTOCHECKBOX "Enable Pre-Logon A&ccess Provider (requires admin access)", ID_CHK_PLAP_REG, 17, 215, 200, 10
     AUTOCHECKBOX "Enable auto restart of active connections", ID_CHK_AUTO_RESTART, 17, 230, 200, 10
+    AUTOCHECKBOX "Prompt for &OTP and combine with password", ID_CHK_CONCAT_OTP, 17, 245, 200, 10
 END
 
 /* Advanced Dialog */
@@ -251,14 +252,14 @@ BEGIN
     LTEXT "OpenVPN GUI v%ls – A Windows GUI for OpenVPN\n\
 Copyright (C) 2004-2005 Mathias Sundman ‪<info@openvpn.se>\n\
 Copyright (C) 2008-2014 Heiko Hund ‪<heikoh@users.sf.net>\n\
-Copyright (C) 2012-2022 OpenVPN GUI contributors\n", ID_TXT_VERSION, 36, 15, 206, 50
+Copyright (C) 2012-2024 OpenVPN GUI contributors\n", ID_TXT_VERSION, 36, 15, 206, 50
     LTEXT "https://github.com/OpenVPN/openvpn-gui", ID_LTEXT_ABOUT2, 36, 55, 206, 42
     LTEXT "OpenVPN - برنامه ای برای تونل ایمن شبکه های  IP \
 از طریق یک پورت  TCP/UDP، با پشتیبانی از جلسه \
  احراز هویت مبتنی بر SSL/TLS و تبادل کلید، رمزگذاری بسته ها،  \
 احراز هویت بسته ها، و فشرده سازی بسته ها. \n\
 \n", ID_LTEXT_ABOUT3, 8, 70, 240, 64
-    LTEXT "Copyright (C) 2002-2022 OpenVPN Technologies Inc. ‪<info@openvpn.net>\n\
+    LTEXT "Copyright (C) 2002-2024 OpenVPN Technologies Inc. ‪<info@openvpn.net>\n\
 https://openvpn.net", ID_LTEXT_ABOUT4, 8, 106, 240, 64
 END
 
@@ -310,6 +311,16 @@ BEGIN
     PUSHBUTTON "&Cancel", IDCANCEL, 90, 200, 50, 14, BS_PUSHBUTTON | WS_TABSTOP
     PUSHBUTTON "&Retry", IDRETRY, 160, 200, 50, 14, BS_PUSHBUTTON | WS_TABSTOP
     LTEXT "", ID_TXT_WARNING, 6, 222, 190, 10
+END
+
+/* QR code dialog */
+ID_DLG_QR DIALOGEX 0, 0, 10, 10
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+FONT 8, "Segoe UI"
+LANGUAGE LANG_FARSI, SUBLANG_DEFAULT
+BEGIN
+    CONTROL "", ID_STATIC_QR, "Static", SS_BITMAP | WS_VISIBLE | SS_CENTERIMAGE, 0, 0, 10, 10
+    LTEXT "Scan this QR code on your mobile to proceed with authentication.", ID_TXT_QR, 0, 0, 10, 10, SS_CENTER | WS_VISIBLE | SS_EDITCONTROL
 END
 
 STRINGTABLE
@@ -566,6 +577,7 @@ OpenVPN احتمالا نصب نشده است"
     IDS_NFO_AUTO_CONNECT    "اتصال خودکار در %u ثانیه آینده…"
     IDS_NFO_CLICK_HERE_TO_START "OpenVPN GUI قبلا باز شده. کلیک راست کنید بر روی آن در نماد های برنامه ها."
     IDS_NFO_BYTECOUNT "بایت به: %ls  خروج: %ls"
+    IDS_NFO_OTP_PROMPT "Input OTP or passcode"
 
     /* AS profile import */
     IDS_ERR_URL_IMPORT_PROFILE "خطا در واکشی نمایه از URL: [%d] %ls"
